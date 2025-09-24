@@ -1,0 +1,487 @@
+/*
+Theme Name: Thierry Robert - Marketing International
+Description: Thème WordPress professionnel pour expert en marketing international et stratégie culturelle nordique
+Version: 1.0
+Author: Thierry Robert
+Text Domain: thierry-theme
+*/
+
+/* Variables CSS personnalisées */
+:root {
+  /* Couleurs principales */
+  --wp-primary: 219 76% 55%;
+  --wp-primary-dark: 219 76% 45%;
+  --wp-primary-light: 219 76% 65%;
+  
+  --wp-secondary: 215 25% 27%;
+  --wp-accent: 25 95% 53%;
+  
+  /* Couleurs neutres */
+  --wp-neutral-50: 210 20% 98%;
+  --wp-neutral-100: 220 14% 96%;
+  --wp-neutral-200: 220 13% 91%;
+  --wp-neutral-300: 216 12% 84%;
+  --wp-neutral-400: 218 11% 65%;
+  --wp-neutral-500: 220 9% 46%;
+  --wp-neutral-600: 215 14% 34%;
+  --wp-neutral-700: 217 19% 27%;
+  --wp-neutral-800: 215 28% 17%;
+  --wp-neutral-900: 221 39% 11%;
+  
+  /* Couleurs système */
+  --wp-success: 142 76% 36%;
+  --wp-warning: 45 93% 47%;
+  --wp-error: 0 84% 60%;
+  
+  /* Ombres */
+  --wp-shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.05);
+  --wp-shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1);
+  --wp-shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1);
+  --wp-shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 8px 10px -6px hsl(0 0% 0% / 0.1);
+  --wp-shadow-2xl: 0 25px 50px -12px hsl(0 0% 0% / 0.25);
+  
+  /* Transitions */
+  --wp-transition: all 0.2s ease-in-out;
+  --wp-transition-slow: all 0.3s ease-in-out;
+}
+
+/* Reset et base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: hsl(var(--wp-neutral-800));
+  background: hsl(var(--wp-neutral-50));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+/* Utilitaires de base */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+
+.hidden { display: none; }
+.block { display: block; }
+.inline-block { display: inline-block; }
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.grid { display: grid; }
+
+/* Composants de base */
+
+/* Boutons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, hsl(var(--wp-primary)), hsl(var(--wp-primary-dark)));
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: var(--wp-transition);
+  box-shadow: var(--wp-shadow-sm);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--wp-shadow-md);
+  color: white;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background: white;
+  color: hsl(var(--wp-neutral-700));
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid hsl(var(--wp-neutral-200));
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: var(--wp-transition);
+}
+
+.btn-secondary:hover {
+  background: hsl(var(--wp-neutral-50));
+  border-color: hsl(var(--wp-primary));
+  color: hsl(var(--wp-primary));
+}
+
+/* Badges */
+.badge-nordic {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: hsl(215 100% 95%);
+  color: hsl(var(--wp-primary));
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: 1px solid hsl(215 100% 90%);
+}
+
+.badge-orange {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: hsl(25 100% 95%);
+  color: hsl(var(--wp-accent));
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: 1px solid hsl(25 100% 90%);
+}
+
+/* Statistiques */
+.stat-number {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, hsl(var(--wp-primary)), hsl(var(--wp-accent)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: hsl(var(--wp-neutral-600));
+  font-weight: 500;
+}
+
+/* Cartes de service */
+.service-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--wp-shadow-md);
+  border: 1px solid hsl(var(--wp-neutral-200));
+  transition: var(--wp-transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--wp-shadow-xl);
+}
+
+.service-duration {
+  background: hsl(215 100% 95%);
+  color: hsl(var(--wp-primary));
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+
+/* Navigation */
+.nav-link {
+  color: hsl(var(--wp-neutral-600));
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--wp-transition);
+  padding: 0.5rem 0;
+}
+
+.nav-link:hover {
+  color: hsl(var(--wp-primary));
+}
+
+/* Formulaires */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid hsl(var(--wp-neutral-300));
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: var(--wp-transition);
+  background: white;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: hsl(var(--wp-primary));
+  box-shadow: 0 0 0 3px hsl(var(--wp-primary) / 0.1);
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  color: hsl(var(--wp-neutral-700));
+  margin-bottom: 0.5rem;
+}
+
+/* Grilles responsives */
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  
+  .md\:flex-row {
+    flex-direction: row;
+  }
+  
+  .md\:block {
+    display: block;
+  }
+  
+  .md\:hidden {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  
+  .lg\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+  
+  .lg\:text-7xl {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+  
+  .lg\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+/* Espacements */
+.space-y-2 > * + * { margin-top: 0.5rem; }
+.space-y-3 > * + * { margin-top: 0.75rem; }
+.space-y-4 > * + * { margin-top: 1rem; }
+.space-y-6 > * + * { margin-top: 1.5rem; }
+.space-y-8 > * + * { margin-top: 2rem; }
+
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+.gap-12 { gap: 3rem; }
+.gap-16 { gap: 4rem; }
+
+/* Padding et margin */
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+.py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+.py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+.py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.mb-12 { margin-bottom: 3rem; }
+.mb-16 { margin-bottom: 4rem; }
+
+/* Positionnement */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+
+.top-0 { top: 0; }
+.left-0 { left: 0; }
+.right-0 { right: 0; }
+.bottom-0 { bottom: 0; }
+
+.z-50 { z-index: 50; }
+
+/* Dimensions */
+.w-4 { width: 1rem; }
+.w-6 { width: 1.5rem; }
+.w-10 { width: 2.5rem; }
+.w-12 { width: 3rem; }
+.w-full { width: 100%; }
+.h-4 { height: 1rem; }
+.h-6 { height: 1.5rem; }
+.h-10 { height: 2.5rem; }
+.h-12 { height: 3rem; }
+.h-20 { height: 5rem; }
+.h-auto { height: auto; }
+.h-full { height: 100%; }
+
+/* Flex */
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-shrink-0 { flex-shrink: 0; }
+
+/* Bordures */
+.border { border-width: 1px; }
+.border-t { border-top-width: 1px; }
+.border-b { border-bottom-width: 1px; }
+.rounded-lg { border-radius: 0.5rem; }
+.rounded-2xl { border-radius: 1rem; }
+.rounded-full { border-radius: 9999px; }
+
+/* Couleurs de bordure */
+.border-neutral-200 { border-color: hsl(var(--wp-neutral-200)); }
+.border-neutral-300 { border-color: hsl(var(--wp-neutral-300)); }
+.border-neutral-700 { border-color: hsl(var(--wp-neutral-700)); }
+
+/* Couleurs de fond */
+.bg-white { background-color: white; }
+.bg-neutral-50 { background-color: hsl(var(--wp-neutral-50)); }
+.bg-neutral-800 { background-color: hsl(var(--wp-neutral-800)); }
+.bg-blue-50 { background-color: hsl(215 100% 95%); }
+.bg-blue-100 { background-color: hsl(215 100% 90%); }
+.bg-blue-600 { background-color: hsl(var(--wp-primary)); }
+
+/* Couleurs de texte */
+.text-white { color: white; }
+.text-blue-600 { color: hsl(var(--wp-primary)); }
+.text-blue-700 { color: hsl(var(--wp-primary-dark)); }
+.text-blue-800 { color: hsl(219 76% 35%); }
+.text-green-500 { color: hsl(var(--wp-success)); }
+.text-neutral-400 { color: hsl(var(--wp-neutral-400)); }
+.text-neutral-500 { color: hsl(var(--wp-neutral-500)); }
+.text-neutral-600 { color: hsl(var(--wp-neutral-600)); }
+.text-neutral-700 { color: hsl(var(--wp-neutral-700)); }
+.text-neutral-800 { color: hsl(var(--wp-neutral-800)); }
+
+/* Tailles de texte */
+.text-sm { font-size: 0.875rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-3xl { font-size: 1.875rem; }
+.text-4xl { font-size: 2.25rem; }
+.text-5xl { font-size: 3rem; }
+
+/* Autres */
+.overflow-hidden { overflow: hidden; }
+.object-cover { object-fit: cover; }
+.leading-relaxed { line-height: 1.625; }
+.leading-tight { line-height: 1.25; }
+.shadow-sm { box-shadow: var(--wp-shadow-sm); }
+.shadow-lg { box-shadow: var(--wp-shadow-lg); }
+.shadow-xl { box-shadow: var(--wp-shadow-xl); }
+.shadow-2xl { box-shadow: var(--wp-shadow-2xl); }
+
+/* Transitions */
+.transition-colors { transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out; }
+.transition-transform { transition: transform 0.2s ease-in-out; }
+
+/* Transformations */
+.group:hover .group-hover\:translate-x-1 {
+  transform: translateX(0.25rem);
+}
+
+/* Pseudo-classes */
+.hover\:bg-neutral-100:hover { background-color: hsl(var(--wp-neutral-100)); }
+.hover\:text-white:hover { color: white; }
+.hover\:text-blue-700:hover { color: hsl(var(--wp-primary-dark)); }
+
+/* Dégradés */
+.bg-gradient-to-br {
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+}
+
+.from-neutral-50 {
+  --tw-gradient-from: hsl(var(--wp-neutral-50));
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, hsl(var(--wp-neutral-50) / 0));
+}
+
+.to-blue-50 {
+  --tw-gradient-to: hsl(215 100% 95%);
+}
+
+/* Backdrop blur */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+}
+
+/* Classes WordPress spécifiques */
+.wp-block-image img {
+  border-radius: 0.5rem;
+  box-shadow: var(--wp-shadow-md);
+}
+
+.wp-block-quote {
+  border-left: 4px solid hsl(var(--wp-primary));
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: hsl(var(--wp-neutral-600));
+}
+
+.wp-block-pullquote {
+  text-align: center;
+  padding: 2rem;
+  background: hsl(var(--wp-neutral-50));
+  border-radius: 1rem;
+  margin: 3rem 0;
+}

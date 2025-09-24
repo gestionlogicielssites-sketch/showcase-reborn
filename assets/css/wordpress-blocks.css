@@ -1,0 +1,485 @@
+/* Copie exacte du contenu de src/styles/wordpress-blocks.css */
+/*
+Styles spécifiques pour les blocs WordPress Gutenberg
+Thierry Robert - Marketing International Theme
+*/
+
+/* Variables pour les blocs */
+:root {
+  --block-spacing: 2rem;
+  --block-border-radius: 0.75rem;
+}
+
+/* === BLOCS DE BASE === */
+
+/* Bloc Paragraphe */
+.wp-block-paragraph {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  color: hsl(var(--wp-neutral-600));
+}
+
+.wp-block-paragraph.has-drop-cap:not(:focus)::first-letter {
+  float: left;
+  font-size: 8.4em;
+  line-height: 0.68;
+  font-weight: 100;
+  margin: 0.05em 0.1em 0 0;
+  text-transform: uppercase;
+  font-style: normal;
+  color: hsl(var(--wp-primary));
+}
+
+/* Bloc Titre */
+.wp-block-heading {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: hsl(var(--wp-neutral-800));
+}
+
+.wp-block-heading h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  background: linear-gradient(135deg, hsl(var(--wp-primary)), hsl(var(--wp-accent)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.wp-block-heading h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.wp-block-heading h3 {
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.wp-block-heading h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* === BLOCS DE MEDIA === */
+
+/* Bloc Image */
+.wp-block-image {
+  margin: var(--block-spacing) 0;
+}
+
+.wp-block-image img {
+  border-radius: var(--block-border-radius);
+  box-shadow: 0 10px 30px -10px hsl(0 0% 0% / 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wp-block-image:hover img {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -15px hsl(0 0% 0% / 0.15);
+}
+
+.wp-block-image figcaption {
+  text-align: center;
+  font-size: 0.875rem;
+  color: hsl(var(--wp-neutral-500));
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+.wp-block-image.is-style-rounded img {
+  border-radius: 50%;
+}
+
+/* Bloc Couverture */
+.wp-block-cover {
+  border-radius: var(--block-border-radius);
+  overflow: hidden;
+  margin: calc(var(--block-spacing) * 1.5) 0;
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wp-block-cover__inner-container {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+  max-width: 600px;
+  padding: 2rem;
+}
+
+.wp-block-cover .wp-block-cover__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.wp-block-cover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, hsl(var(--wp-primary) / 0.8), hsl(var(--wp-accent) / 0.6));
+  z-index: 1;
+}
+
+/* === BLOCS DE LAYOUT === */
+
+/* Bloc Groupe */
+.wp-block-group {
+  margin: var(--block-spacing) 0;
+}
+
+.wp-block-group.is-style-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: var(--block-border-radius);
+  box-shadow: 0 4px 20px -5px hsl(0 0% 0% / 0.1);
+  border: 1px solid hsl(var(--wp-neutral-200));
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wp-block-group.is-style-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -10px hsl(0 0% 0% / 0.15);
+}
+
+.wp-block-group.is-style-highlight {
+  background: linear-gradient(135deg, hsl(215 100% 97%), hsl(215 100% 95%));
+  padding: 2rem;
+  border-radius: var(--block-border-radius);
+  border-left: 4px solid hsl(var(--wp-primary));
+  position: relative;
+  overflow: hidden;
+}
+
+.wp-block-group.is-style-highlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, hsl(var(--wp-primary) / 0.1), transparent);
+  border-radius: 50%;
+  transform: translate(30%, -30%);
+}
+
+/* Bloc Colonnes */
+.wp-block-columns {
+  gap: 2rem;
+  margin: var(--block-spacing) 0;
+}
+
+.wp-block-column {
+  min-width: 0; /* Évite le débordement du contenu */
+}
+
+@media (max-width: 768px) {
+  .wp-block-columns {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+/* Bloc Média et Texte */
+.wp-block-media-text {
+  margin: calc(var(--block-spacing) * 1.5) 0;
+  border-radius: var(--block-border-radius);
+  overflow: hidden;
+  box-shadow: 0 10px 30px -10px hsl(0 0% 0% / 0.1);
+}
+
+.wp-block-media-text__media img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.wp-block-media-text__content {
+  padding: 3rem;
+  background: white;
+}
+
+@media (max-width: 768px) {
+  .wp-block-media-text__content {
+    padding: 2rem;
+  }
+  
+  .wp-block-media-text.is-stacked-on-mobile .wp-block-media-text__media {
+    order: -1;
+  }
+}
+
+/* === BLOCS DE NAVIGATION === */
+
+/* Bloc Navigation */
+.wp-block-navigation {
+  font-weight: 500;
+}
+
+.wp-block-navigation-link {
+  transition: color 0.2s ease;
+}
+
+.wp-block-navigation-link:hover {
+  color: hsl(var(--wp-primary));
+}
+
+.wp-block-navigation-submenu__toggle {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease;
+}
+
+.wp-block-navigation-submenu__toggle:hover {
+  background-color: hsl(var(--wp-neutral-100));
+}
+
+/* === BLOCS INTERACTIFS === */
+
+/* Bloc Bouton */
+.wp-block-button {
+  margin: 1rem 0;
+}
+
+.wp-block-button__link {
+  padding: 0.875rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.wp-block-button.is-style-primary .wp-block-button__link {
+  background: linear-gradient(135deg, hsl(var(--wp-primary)), hsl(var(--wp-primary-dark)));
+  color: white;
+  box-shadow: 0 4px 15px -5px hsl(var(--wp-primary) / 0.4);
+}
+
+.wp-block-button.is-style-primary:hover .wp-block-button__link {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -8px hsl(var(--wp-primary) / 0.5);
+}
+
+.wp-block-button.is-style-secondary .wp-block-button__link {
+  background: white;
+  color: hsl(var(--wp-neutral-700));
+  border: 2px solid hsl(var(--wp-neutral-200));
+}
+
+.wp-block-button.is-style-secondary:hover .wp-block-button__link {
+  background: hsl(var(--wp-neutral-50));
+  border-color: hsl(var(--wp-primary));
+  color: hsl(var(--wp-primary));
+}
+
+/* === BLOCS DE CONTENU === */
+
+/* Bloc Citation */
+.wp-block-quote {
+  border-left: 4px solid hsl(var(--wp-primary));
+  padding-left: 2rem;
+  margin: 2rem 0;
+  font-style: italic;
+  font-size: 1.125rem;
+  color: hsl(var(--wp-neutral-600));
+  position: relative;
+}
+
+.wp-block-quote::before {
+  content: '"';
+  font-size: 4rem;
+  color: hsl(var(--wp-primary) / 0.3);
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  font-family: serif;
+  line-height: 1;
+}
+
+.wp-block-quote cite {
+  display: block;
+  margin-top: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  color: hsl(var(--wp-neutral-800));
+}
+
+/* Bloc Citation Pull */
+.wp-block-pullquote {
+  text-align: center;
+  padding: 3rem 2rem;
+  margin: 3rem 0;
+  background: linear-gradient(135deg, hsl(var(--wp-neutral-50)), hsl(215 100% 98%));
+  border-radius: var(--block-border-radius);
+  border-top: 4px solid hsl(var(--wp-primary));
+  position: relative;
+}
+
+.wp-block-pullquote blockquote {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: hsl(var(--wp-neutral-800));
+  margin: 0;
+  line-height: 1.4;
+}
+
+.wp-block-pullquote cite {
+  display: block;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  color: hsl(var(--wp-primary));
+  font-weight: 600;
+}
+
+/* Bloc Liste */
+.wp-block-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.wp-block-list li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 0.75rem;
+  color: hsl(var(--wp-neutral-600));
+  line-height: 1.6;
+}
+
+.wp-block-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, hsl(var(--wp-primary)), hsl(var(--wp-accent)));
+  border-radius: 50%;
+}
+
+.wp-block-list.is-style-checkmark li::before {
+  content: '✓';
+  width: auto;
+  height: auto;
+  color: hsl(var(--wp-success));
+  font-weight: bold;
+  top: 0.2rem;
+  left: 0.2rem;
+}
+
+/* === BLOCS SPÉCIALISÉS === */
+
+/* Bloc Séparateur */
+.wp-block-separator {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(var(--wp-neutral-300)), transparent);
+  margin: 3rem 0;
+}
+
+.wp-block-separator.is-style-wide {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, hsl(var(--wp-primary) / 0.5), transparent);
+}
+
+/* Bloc Spacer */
+.wp-block-spacer {
+  clear: both;
+}
+
+/* === UTILITAIRES DE BLOCS === */
+
+/* Alignements */
+.wp-block-group.has-text-align-center,
+.has-text-align-center {
+  text-align: center;
+}
+
+.wp-block-group.has-text-align-left,
+.has-text-align-left {
+  text-align: left;
+}
+
+.wp-block-group.has-text-align-right,
+.has-text-align-right {
+  text-align: right;
+}
+
+/* Largeurs d'alignement */
+.alignwide {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+}
+
+.alignfull {
+  margin-left: calc(-100vw / 2 + 100% / 2);
+  margin-right: calc(-100vw / 2 + 100% / 2);
+  max-width: 100vw;
+  width: 100vw;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wp-block-group.is-style-card,
+.wp-block-image,
+.wp-block-quote {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  :root {
+    --block-spacing: 1.5rem;
+  }
+  
+  .wp-block-cover {
+    min-height: 300px;
+  }
+  
+  .wp-block-cover__inner-container {
+    padding: 1.5rem;
+  }
+  
+  .wp-block-group.is-style-card,
+  .wp-block-group.is-style-highlight {
+    padding: 1.5rem;
+  }
+  
+  .wp-block-pullquote {
+    padding: 2rem 1.5rem;
+  }
+  
+  .wp-block-pullquote blockquote {
+    font-size: 1.25rem;
+  }
+}

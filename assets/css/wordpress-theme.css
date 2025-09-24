@@ -1,0 +1,283 @@
+/* Copie exacte du contenu de src/styles/wordpress-theme.css */
+/*
+Theme Name: Thierry Robert - Marketing International
+Description: Thème WordPress professionnel pour expert en marketing international et stratégie culturelle nordique
+Version: 1.0
+Author: Thierry Robert
+*/
+
+/* Reset WordPress et normalisation */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: var(--wp-neutral-800);
+  background: var(--wp-neutral-50);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Conteneur principal WordPress */
+.container,
+.wp-block-group__inner-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container,
+  .wp-block-group__inner-container {
+    padding: 0 2rem;
+  }
+}
+
+/* Typographie WordPress */
+.wp-block-heading h1,
+.wp-block-heading h2,
+.wp-block-heading h3,
+.wp-block-heading h4,
+.wp-block-heading h5,
+.wp-block-heading h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--wp-neutral-800);
+  margin: 0 0 1rem 0;
+}
+
+.wp-block-heading h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+}
+
+.wp-block-heading h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+}
+
+.wp-block-heading h3 {
+  font-size: 1.5rem;
+}
+
+.wp-block-paragraph {
+  margin: 0 0 1.5rem 0;
+  color: var(--wp-neutral-600);
+}
+
+.wp-block-paragraph.lead {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+/* Structure des pages WordPress */
+.wp-site-blocks {
+  padding-top: 80px; /* Compensation pour header fixe */
+}
+
+/* Liens */
+a {
+  color: var(--wp-primary);
+  text-decoration: none;
+  transition: var(--wp-transition);
+}
+
+a:hover {
+  color: var(--wp-primary-dark);
+}
+
+/* Listes */
+.wp-block-list {
+  padding-left: 1.5rem;
+  margin: 0 0 1.5rem 0;
+}
+
+.wp-block-list li {
+  margin-bottom: 0.5rem;
+  color: var(--wp-neutral-600);
+}
+
+/* Images WordPress */
+.wp-block-image {
+  margin: 0 0 2rem 0;
+}
+
+.wp-block-image img {
+  height: auto;
+  max-width: 100%;
+  border-radius: 0.5rem;
+}
+
+.wp-block-image.is-style-rounded img {
+  border-radius: 1rem;
+}
+
+.wp-block-image figcaption {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--wp-neutral-500);
+  margin-top: 0.5rem;
+}
+
+/* Blocs médias et texte */
+.wp-block-media-text {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin: 3rem 0;
+}
+
+@media (max-width: 768px) {
+  .wp-block-media-text {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Blocs colonnes */
+.wp-block-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.wp-block-column {
+  flex: 1;
+  min-width: 280px;
+}
+
+@media (max-width: 768px) {
+  .wp-block-columns {
+    flex-direction: column;
+  }
+}
+
+/* Blocs groupe avec styles personnalisés */
+.wp-block-group.has-background {
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+  margin: 2rem 0;
+}
+
+.wp-block-group.is-style-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--wp-shadow-md);
+  border: 1px solid var(--wp-neutral-200);
+  margin: 1rem 0;
+}
+
+.wp-block-group.is-style-highlight {
+  background: hsl(215, 100%, 95%);
+  padding: 2rem;
+  border-radius: 1rem;
+  border-left: 4px solid var(--wp-primary);
+}
+
+/* Couverture / Cover */
+.wp-block-cover {
+  position: relative;
+  padding: 5rem 2rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.wp-block-cover__inner-container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.wp-block-cover .wp-block-cover__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+/* Espacement des sections */
+.wp-block-group.section-spacing {
+  padding: 5rem 0;
+}
+
+.wp-block-group.section-spacing-sm {
+  padding: 3rem 0;
+}
+
+.wp-block-group.section-spacing-lg {
+  padding: 8rem 0;
+}
+
+/* Classes utilitaires WordPress */
+.has-text-align-center {
+  text-align: center;
+}
+
+.has-text-align-left {
+  text-align: left;
+}
+
+.has-text-align-right {
+  text-align: right;
+}
+
+.has-primary-color {
+  color: var(--wp-primary) !important;
+}
+
+.has-secondary-color {
+  color: var(--wp-secondary) !important;
+}
+
+.has-primary-background-color {
+  background-color: var(--wp-primary) !important;
+}
+
+.has-secondary-background-color {
+  background-color: var(--wp-secondary) !important;
+}
+
+.has-neutral-50-background-color {
+  background-color: var(--wp-neutral-50) !important;
+}
+
+/* Classe pour masquer des éléments visuellement mais les garder accessibles */
+.screen-reader-text {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Styles d'impression */
+@media print {
+  .wp-block-navigation,
+  .wp-block-button,
+  .contact-form {
+    display: none;
+  }
+  
+  .wp-site-blocks {
+    padding-top: 0;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+}
