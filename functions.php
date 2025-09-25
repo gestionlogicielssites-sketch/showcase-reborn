@@ -287,69 +287,79 @@ function thierry_reading_time($post_id = null) {
  * Gestion des formulaires de contact
  */
 function thierry_handle_contact_form() {
-    if (!wp_verify_nonce($_POST['thierry_contact_nonce'], 'thierry_contact_form')) {
-        wp_die('Erreur de sécurité');
+    if ( $_SERVER['REQUEST_METHOD'] !== 'POST' ) {
+        return;
     }
-    
-    $name = sanitize_text_field($_POST['name']);
-    $email = sanitize_email($_POST['email']);
-    $company = sanitize_text_field($_POST['company']);
-    $message = sanitize_textarea_field($_POST['message']);
-    
-    // Validation basique
-    if (empty($name) || empty($email) || empty($message)) {
-        wp_redirect(add_query_arg('contact', 'error', wp_get_referer()));
+
+    // Only handle our specific contact form submissions
+    if ( ! isset( $_POST['thierry_contact_nonce'] ) || ! wp_verify_nonce( $_POST['thierry_contact_nonce'], 'thierry_contact_form' ) ) {
+        return;
+    }
+
+    $name    = sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) );
+    $email   = sanitize_email( wp_unslash( $_POST['email'] ?? '' ) );
+    $company = sanitize_text_field( wp_unslash( $_POST['company'] ?? '' ) );
+    $message = sanitize_textarea_field( wp_unslash( $_POST['message'] ?? '' ) );
+
+    // Basic validation
+    if ( empty( $name ) || empty( $email ) || ! is_email( $email ) || empty( $message ) ) {
+        wp_safe_redirect( add_query_arg( 'contact', 'error', wp_get_referer() ?: home_url( '/' ) ) );
         exit;
     }
-    
-    // Envoi de l'email
-    $to = get_option('admin_email');
-    $subject = 'Nouveau message de contact - ' . get_bloginfo('name');
-    $body = "Nom: {$name}\n";
-    $body .= "Email: {$email}\n";
-    $body .= "Entreprise: {$company}\n\n";
-    $body .= "Message:\n{$message}";
-    
+
+    // Send email
+    $to      = get_option( 'admin_email' );
+    $subject = 'Nouveau message de contact - ' . get_bloginfo( 'name' );
+    $body    = "Nom: {$name}\n";
+    $body   .= "Email: {$email}\n";
+    $body   .= "Entreprise: {$company}\n\n";
+    $body   .= "Message:\n{$message}";
+
     $headers = array(
         'Content-Type: text/plain; charset=UTF-8',
-        'From: ' . get_bloginfo('name') . ' <' . get_option('admin_email') . '>',
-        'Reply-To: ' . $name . ' <' . $email . '>'
+        'From: ' . get_bloginfo( 'name' ) . ' <' . $to . '>',
+        'Reply-To: ' . $name . ' <' . $email . '>',
     );
-    
-    if (wp_mail($to, $subject, $body, $headers)) {
-        wp_redirect(add_query_arg('contact', 'success', wp_get_referer()));
-    } else {
-        wp_redirect(add_query_arg('contact', 'error', wp_get_referer()));
-    }
+
+    $sent = wp_mail( $to, $subject, $body, $headers );
+
+    wp_safe_redirect( add_query_arg( 'contact', $sent ? 'success' : 'error', wp_get_referer() ?: home_url( '/' ) ) );
     exit;
 }
-add_action('wp', 'thierry_handle_contact_form');
+add_action( 'init', 'thierry_handle_contact_form' );
 
 /**
  * Métadonnées SEO basiques
  */
 function thierry_seo_meta() {
-    if (is_front_page()) {
+    // Meta description
+    if ( is_front_page() ) {
         echo '<meta name="description" content="Expert en marketing international et stratégie culturelle nordique. Spécialisation unique dans les cultures scandinaves pour votre expansion internationale.">' . "\n";
         echo '<meta name="keywords" content="marketing international, stratégie culturelle, cultures nordiques, expansion internationale, développement commercial">' . "\n";
-    } elseif (is_single() || is_page()) {
+    } elseif ( is_singular() ) {
         $excerpt = get_the_excerpt();
-        if ($excerpt) {
-            echo '<meta name="description" content="' . esc_attr($excerpt) . '">' . "\n";
+        if ( $excerpt ) {
+            echo '<meta name="description" content="' . esc_attr( $excerpt ) . '">' . "\n";
         }
     }
-    
+
+    // Canonical URL
+    $canonical = is_singular() ? get_permalink() : home_url( '/' );
+    echo '<link rel="canonical" href="' . esc_url( $canonical ) . '">' . "\n";
+
     // Open Graph
-    echo '<meta property="og:site_name" content="' . get_bloginfo('name') . '">' . "\n";
+    echo '<meta property="og:site_name" content="' . esc_attr( get_bloginfo( 'name' ) ) . '">' . "\n";
     echo '<meta property="og:type" content="website">' . "\n";
-    echo '<meta property="og:url" content="' . get_permalink() . '">' . "\n";
-    
-    if (has_post_thumbnail()) {
-        $thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
-        echo '<meta property="og:image" content="' . $thumbnail[0] . '">' . "\n";
+    echo '<meta property="og:url" content="' . esc_url( $canonical ) . '">' . "\n";
+
+    if ( is_singular() && has_post_thumbnail() ) {
+        $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
+        if ( ! empty( $thumbnail[0] ) ) {
+            echo '<meta property="og:image" content="' . esc_url( $thumbnail[0] ) . '">' . "\n";
+        }
     }
 }
-add_action('wp_head', 'thierry_seo_meta');
+add_action( 'wp_head', 'thierry_seo_meta' );
 
 /**
  * Ajout de données structurées JSON-LD
